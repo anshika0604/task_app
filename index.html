@@ -35,10 +35,33 @@
     </div>
   </div>
 
+
+  <!-- Open Task Button Modal -->
+  <div class="modal fade" id="showTask" tabindex="-1" aria-labelledby="showTaskLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="showTaskLabel">Task Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body task__content">
+          <!-- <p>Js txt</p> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Card to be Inserted -->
+
+
   <!-- Button for smaller screen-->
   <div class="add__new__btn_mobile__only d-md-none">
     <button class="btn btn-primary d-flex align-items-center gap-2" type="button" data-bs-toggle="modal"
-      data-bs-target="#addNewModal">
+      data-bs-target="#addNewModal" onclick="handleSubmit()">
       <i class="fas fa-plus"></i>
       Add an item</button>
   </div>
@@ -71,7 +94,7 @@
               <textarea class="form-control" id="taskDescription" placeholder="Enter your task desc.." required
                 rows="4"></textarea>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-primary" onclick="handleSubmit()">Save changes</button>
             </div>
           </form>
         </div>

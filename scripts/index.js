@@ -1,10 +1,11 @@
 const state = {
-    taskList: []
+    taskList: [],
 };
 
 // DOM Manipulations
 const taskModel = document.querySelector(".task__modal__body");
 //console.log(taskModel);
+const taskContent = document.querySelector('.task__content');
 
 
 // to create a card on the home page
@@ -36,3 +37,59 @@ const htmlTaskContent = (id, title, description, type, url) => `
         </div>
     </div>
 `;
+
+
+// Dynamic Modals(Cards) on our home page
+
+const htmlModalContent = ({id, title, description, type, url}) => {
+    const date = new Date(parseInt(id));
+    return `
+        <div id=${id}>
+        ${
+            url && `<img width='100%' src=${url} alt='card image here' class='img-fluid place__holder__image mb-3' />`
+        }
+        <strong class='text-sm text-muted'>Created on ${date.toDateString()}</strong>  
+        <h2 class='my-3'>${title}</h2>
+        <p class='lead'>${description}</p>
+        <span class='badge bg-primary m-1'>${type}</span>
+        </div>
+    `;
+};
+
+//Updating LocalStorage
+
+const updateLocalStorage = () => {
+    localStorage.setItem('task',JSON.stringify({
+        tasks:state.taskList,
+    }));
+};
+
+// to get data or card on your ui from localStorage
+const loadInitialData = () => {
+    const localStorageCopy = JSON.parse(localStorage.task);
+    if(localStorageCopy) state.taskList = localStorageCopy.task;
+
+    state.taskList.map((cardData) => {
+        taskContent.insertAdjacentHTML("beforeend",htmlTaskContent(cardData));
+    });
+};
+
+const handleSubmit = (event) => {
+    const id = `${Date.now()}`;
+    const input = {
+        url: document.getElementById("imageUrl").value,
+        title: document.getElementById("taskTitle").value,
+        type: document.getElementById("taskType").value,
+        description: document.getElementById("taskDescription").value,
+    };
+    if(input.title == '' || input.type == '' || input.description == '') {
+        return alert("Please fill all the fields");
+    }
+    taskContent.insertAdjacentHTML("beforeend",htmlTaskContent({
+        ...input,id,
+    }));
+    state.taskList.push({...input,id});
+
+    //update localStorage
+    updateLocalStorage();
+};
