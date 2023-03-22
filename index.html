@@ -15,49 +15,7 @@
 
 </head>
 
-<body>
-  <!-- Modal for Home Page-->
-  <div class="modal fade" id="showTask" tabindex="-1" aria-labelledby="showTaskLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="showTaskLabel">Task Details</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body task__modal__body">
-          <!-- <p>Js txt</p> -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- Open Task Button Modal -->
-  <div class="modal fade" id="showTask" tabindex="-1" aria-labelledby="showTaskLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="showTaskLabel">Task Details</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body task__content">
-          <!-- <p>Js txt</p> -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- New Card to be Inserted -->
-
-
+<body onload="loadInitialData()">
   <!-- Button for smaller screen-->
   <div class="add__new__btn_mobile__only d-md-none">
     <button class="btn btn-primary d-flex align-items-center gap-2" type="button" data-bs-toggle="modal"
@@ -66,16 +24,16 @@
       Add an item</button>
   </div>
 
-  <!-- Modal -->
+  <!-- Modal to add new item  -->
   <div class="modal fade" id="addNewModal" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="addNewModalLabel">Modal title</h1>
+          <h5 class="modal-title fs-5" id="addNewModalLabel">Add New Task</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form onsubmit="return false">
             <div class="mb-3">
               <label for="imageUrl" class="form-label">Image URL</label>
               <input type="url" class="form-control" id="imageUrl" placeholder="https://example.com/anshika" required />
@@ -94,13 +52,34 @@
               <textarea class="form-control" id="taskDescription" placeholder="Enter your task desc.." required
                 rows="4"></textarea>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="handleSubmit()">Save changes</button>
+              <button type="submit" class="btn btn-primary" onclick="handleSubmit()">Save changes</button>
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Modal for Home Page-->
+  <div class="modal fade" id="showTask" tabindex="-1" aria-labelledby="showTaskLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="showTaskLabel">Task Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body task__modal__body">
+          <!-- <p>Js txt</p> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Card to be Inserted -->
+
 
   <!-- Nav Bar-->
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -144,7 +123,6 @@
     <section class="mt-4">
       <div class="row task__content">
         <!-- <h1>This is the place where we will get all the cards</h1> -->
-
       </div>
     </section>
   </div>
